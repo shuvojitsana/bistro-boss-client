@@ -10,7 +10,10 @@ const ChefRecommends = () => {
     useEffect(() =>{
         fetch('menu.json')
         .then(res => res.json())
-        .then(data => setMenu(data))
+        .then(data => {
+            const popularMenu = data.filter(item => item.category === 'offered');
+            setMenu(popularMenu)
+        })
     }, [])
     return (
         <div className="my-10">
